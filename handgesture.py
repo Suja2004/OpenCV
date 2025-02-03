@@ -99,12 +99,12 @@ def handle_peace_sign(fingers):
     global peace_sign_time
     if fingers[1] and fingers[2] and not any(fingers[3:]):  # Peace Sign (Index + Middle)
         if peace_sign_time is None:
-            peace_sign_time = time.time()  # Start timer when peace sign is detected
-        elif time.time() - peace_sign_time > 1:  # If peace sign is held for 1 second
+            peace_sign_time = time.time()  
+        elif time.time() - peace_sign_time > 1:  
             print("Stopping the program...")
             return True
     else:
-        peace_sign_time = None  # Reset if peace sign is not detected
+        peace_sign_time = None  
     return False
 
 
@@ -150,11 +150,10 @@ while True:
                 move_cursor(index_finger_tip)
                 action = "Moving Cursor"
 
-            # Add more gestures here (example: finger spread, peace sign, etc.)
             elif fingers[1] and fingers[2] and fingers[3] and fingers[
-                4]:  # All fingers extended = No Action Placeholder
+                4]:  # All fingers extended 
                 action = "Moving Cursor"
-            elif fingers[0] and fingers[4] and not any(fingers[2:3]):  # Thumb + Middle = No Action Placeholder
+            elif fingers[0] and fingers[4] and not any(fingers[2:3]):  # Thumb + Middle 
                 action = "Right Click"
 
             # Handle Peace Sign Gesture to stop the program
@@ -168,7 +167,6 @@ while True:
     # Show the frame with action text
     cv2.imshow("Hand Gesture Control", frame)
 
-    # Check for manual stop condition (e.g., press 'q' to stop)
     if cv2.waitKey(1) & 0xFF == ord('q'):  # Manually exit by pressing 'q'
         print("Exiting...")
         break
